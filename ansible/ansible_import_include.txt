@@ -1,0 +1,24 @@
+# можно вызывать плейбуки в других плейбуках
+
+--- 
+- name: my main playbook
+  hosts: all
+  become: yes
+  
+  vars:
+    mytext: "hello world:
+    
+  tasks:
+  - name: ping test
+    ping:
+    
+  - name: run playbook1.yml
+    import: playbook1.yml               # парсит весь файл, копирует все содержимое, подставляет значения переменных и только потом запускает
+    
+  - name: run playbook2.yml
+    include: playbook2.yml              # выполняет плейбук, пока не дойдет до include, потом копирует данные с запускаемого плейбука, подставляет переменные и выполняется дальше
+    
+    
+  # можно так
+  - include: playbook1.yml
+  - import: playbook2.yml  mytext="Hello friend:  

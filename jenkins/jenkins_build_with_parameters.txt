@@ -1,0 +1,12 @@
+1. Freestyle project
+2. build-shell
+3. command: echo hello $VARIABLE
+4. this project is parameterized - add param - (выбираем тип параметра, чекбокс и т.п.)
+	choose parameter
+	Name: REGION(переменная)
+	choises:
+		us-west-1
+		us-west-2
+		ca-central-1
+	description: please select your region
+	

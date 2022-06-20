@@ -1,0 +1,60 @@
+# запускаем контейнер, даем имя, в фоновом режиме, после остановки или отработки контейнер удалить
+docker run --name hello -d --rm hello-world
+
+
+# билд веб приложения
+# билдим имейдж из докер файла
+docker build -t web-hello .
+
+# запускаем контейнер с именем web из образа web-hello 
+docker run --rm --name web web-hello
+
+# проброс порта контейнера 8080 в 8081 
+docker run --rm --name web -p 8081:8080 web-hello
+
+# -e environment, указываем переменную окружения в доккер файле ENV TZ=Europe/Moscow
+docker run --rm --name web -p 8081:8080 -e TZ=Europe/Moscow web-hello
+
+# чтобы данные обновлялись можем указать директорию из которой контейнер будет забирать данные
+docker run --rm --name web -p 8081:8080 -e TZ=Europe/Moscow -v <local machine path to dir>:<workdir in container> web-hello
+
+# созададим docker volume
+docker volume ls
+docker volume create web
+docker run --rm --name web -p 8081:8080 -v web:/usr/src/app/resources -e TZ=Europe/Moscow web-hello
+
+# удалим все имейджи
+docker images rmi $(docker -q)
+
+### docker compose ###
+# запускает контейнеры пачкой
+docker-compose docker build -t flask-app .
+
+### заходим в шелл контейнера ###
+docker exec -it myContainer bash
+
+### запушить на docker hub ###
+docker login -u $USERNAME -p $PASSWORD
+docker build -t mustafaevsl/toolbox:latest .
+docker push mustafaevsl/toolbox:latest
+
+### удалить все контейнеры с тегом none ###
+docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+
+### удалить не используемые контейнеры ###
+docker image prune --all
+
+### чекнуть айпишник контейнера ##
+docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id
+
+### делаем сеть бридж ###
+docker network create <network name> --driver bridge
+docker run -dit --name <container name> --network <network name> <image> 
+
+### расшарить ключ ###
+docker run -it --rm -v ~/.ssh:/home/user/.ssh:ro
+
+### билд с аргументами ###
+--build-arg ssh_prv_key="$(cat ~/.ssh/id_rsa)" --build-arg ssh_pub_key="$(cat ~/.ssh/id_rsa.pub)"
+
+

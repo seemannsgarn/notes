@@ -1,0 +1,168 @@
+---
+- name: Example playbook
+  hosts: all
+  become: yes
+  
+  vars: 
+    message1: String1
+    message2: String2
+    secret: XDKDKDKDKLDLDKD
+    
+  tasks:
+  
+  - name: print variable
+    debug:
+      var: message1
+      
+  # собираем в одну переменную несколько переменных    
+  - set_fact: full_message="{{ message1 }} {{ message1 }} from {{ ansible_host }}" 
+  
+  # сохранить вывод в переменную
+  - shell: uptime
+    register: results
+    
+  - debug:
+      var: results
+      var: results.stdout
+      
+=========================================================================================
+
+# БЛОКИ ПО ТИПУ ОС
+---
+- name: Install Apache and Upload index.html
+  hosts: all
+  become: yes
+  
+  vars:
+    source_file: ./MyWebSite/index.htnl
+    destin_file: /var/www/html
+    
+  tasks:
+  - name: print linux ver
+    debug: var=ansible_os_family
+  
+  - block: # ======== RedHat ========
+  
+   	  - name: Install Apache web server for RedHat
+        yum: name=httpd state=latest
+      
+      - name: Copy index.html to wev server
+        copy: src={{ source_file }} dest={{ destin_file }} mode=0555
+        notify: Restart Apache RedHat
+      
+      - name: Start web server service
+        service: name=httpd state=started enabled=yes
+  
+      when: ansible_os_familt == "RedHat"
+  
+  - block: # ======== Debian ========
+  
+      - name: Install Apache web server for Debian
+        apt: name=apache2 state=latest
+      
+      - name: Start web server service
+        service: name=apache2 state=started enabled=yes
+      
+      - name: Restart Apache Dedian
+        service: name=apache2 state=restarted  
+    
+    when: ansible_os_family == "Debian" 
+
+=========================================================================================
+
+---
+- name: loops playbook
+  hosts: all
+  become: yes
+  
+  tasks:
+  - name: say hello to all
+    debug: msg="Hello {{ item }}" 			# item зарезервированное слово
+    loop:									# with_items or loop
+      - "Name1"
+      - "Name2"
+      - "Name3"
+      - "Name4"
+  
+  - name: loop until example
+    shell: echo -n A >> myfile.txt $$ cat myfile.txt         
+    register: output									# сохраняем вывод в переменную 
+    delay: 2									        # задержка 2 секунды
+    retries: 10											# повторить 10 раз
+    until: output.stdout.find("AAAA") == false          # до того момента пока не будет в файле АААА
+    
+  - name: print output
+    debug:
+      var: output.stdout
+
+=========================================================================================
+# JINJA TEMPLATE
+# {{ VARIABLE }}
+
+---
+- name: JINJA playbook
+  hosts: all
+  become: yes
+  
+  - name: generate j2
+    template: src={{ path_variable }}/file.j2 dest={{ destination }} mode=0555
+    notify:
+      - Restart Apache RedHat
+      - Restart Apache Debian 
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    

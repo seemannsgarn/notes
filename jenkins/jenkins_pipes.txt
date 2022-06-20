@@ -1,0 +1,28 @@
+										Jenkins pipelines
+
+============================== https://www.jenkins.io/doc/book/pipeline/ ==============================
+
+pipeline {
+	agent any
+	stages {
+		stage('MyJenkins-BUild-Steps'){
+			steps {
+				echo "One"
+				echo "Two"
+				echo "Tree"
+			}
+		}
+	}
+}
+
+# переменные окружения доступные любому стейджу
+environment {
+	PROJECT_NAME = "Project Adam"
+	OWNER_NAME = "Jabba the Hutt"
+}
+
+	steps("Test"){
+		echo $PROJECT_NAME
+		echo $OWNER_NAME
+	}
+

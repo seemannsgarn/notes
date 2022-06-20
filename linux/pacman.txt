@@ -1,0 +1,40 @@
+Pacman Guide
+
+To update the system
+sudo pacman -Syu
+
+Update the database:
+sudo pacman -Syy
+
+Installing
+To install a package (always run pacman -Syu, before installing):
+sudo pacman -S package_name
+
+To install a local package, or from a website:
+sudo pacman -U /path/to/the/package
+
+To re-install all packages (those from the repo’s), in case of emergency:
+pacman -Qnq | pacman -S - 
+
+Removing Packages
+If you want to only remove the package, the following command is sufficient:
+sudo pacman -R
+
+To remove the package and those of its dependencies that aren’t needed by any other application, do
+sudo pacman -Rs
+
+Finally, to remove the package, avoid orphaned dependencies and erase its global configuration, type
+sudo pacman -Rns package_name
+
+which in most cases is the proper command to remove software.
+
+Searches/Queries
+Info about an installed package:
+pacman -Qi package_name
+
+Queries the repo about a package:
+pacman -Ss package_name
+
+Queries the repo about a packages, and all that depend on it:
+pacman -Sii package_name
+

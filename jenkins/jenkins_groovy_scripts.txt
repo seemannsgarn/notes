@@ -1,0 +1,42 @@
+Groovy scripts
+
+localhost:8080/script 
+
+// comment
+println("Hello friend")
+"cat /etc/passwd".execute().text
+new File('/etc/passwd').text
+new File("${Jenkins.instance.root}/credentials.xml").text
+
+// all methods
+Jenkins.instance.metaClass.methods*.name
+Jenkins.instance.getNumExecutors()
+
+
+// it - индекс, пример испольхования метода
+job = Jenkins.instance.getItemByFullName("MyBuild")
+job.getBuilds().each {
+	println("Build" + it + "Results" + it.result)
+}
+
+// обнулить jobs success
+job = Jenkins.instance.getItemByFullName("MyBuild")
+job.getBuilds().each {
+	if(it.result == Result.SUCCESS){
+		it.delete()
+	}
+}
+// job fails
+job = Jenkins.instance.getItemByFullName("ParametersJob")
+job.getBuilds().each {
+	if(it.result == Result.FAILURE){
+		it.delete()
+	}
+}
+// job all и обнуление
+job = Jenkins.instance.getItemByFullName("MyBuild")
+job.getBuilds().each { build ->
+	build.delete()
+}
+
+job.updateNextBuildNUmber(1)

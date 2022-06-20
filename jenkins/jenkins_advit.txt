@@ -1,0 +1,53 @@
+								### plugins ###
+here: /var/lib/jenkins/plugins
+
+
+								### publish over ssh ###
+1. install plugin publish over ssh
+2. Enter credentials and add servers
+	manage jenkins - manage system - publish over ssh - paste key
+	ssh servers - add server, hostname=ip
+3. build conf
+
+								### jenkins slave ###
+								
+need 2 plugin:
+	ssh agent - allow save credentials 
+	ssh slave - allow add agents from ssh
+	
+manage jenknins - manage notes
+
+add
+	new note
+		name
+		description
+		of executor (ex: 2)
+		remote root directory 
+		labels (*)
+		launch method (launc agent via ssh)
+		host(ip address)
+		
+		
+						### if need running a job on slave ###
+						
+conf job - checkbox: restrict where this project can be run
+
+
+							### jenkins cli ###
+manage kenkins - Jenkins CLI
+
+# master
+java -jar jenkins-cli.jar -s http://192.168.56.2:8080/ -webSocket help 
+# another user, token
+java -jar jenkins-cli.jar -auth service_user:11bff9dddfb61d8db01b6fd48204897a4d   http://192.168.56.2:8080/ -webSocket help
+# env credentials
+export JENKINS_USER_ID=myuser
+export JENKINS_API_TOKEN=11bff9dddfb61d8db01b6fd48204897a4d
+
+							### deploy from Github ###
+Jenkins login to git - git clone - build/compile - test - deploy - push on server
+
+							### build c параметрами ###
+
+
+

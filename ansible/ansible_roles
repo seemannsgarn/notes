@@ -1,0 +1,18 @@
+# roles
+
+mkdir roles
+cd roles/
+ansible-galaxy init <roleName>
+
+# default		дефолтные переменные
+# files			файлы которые надо деплоить
+# handlers		обработчики
+# meta			мета данные
+# tasks			содержит список заданий роли
+# templates		файлы которые генерируются
+# tests			тесты
+# vars			все другие переменные
+
+
+
+

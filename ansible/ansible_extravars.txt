@@ -1,0 +1,14 @@
+1. Вносим переменную в плейбук
+
+---
+- name: <playbook name> 
+  hosts: "{{ MYHOSTS }}"
+  become: yes
+  
+  roles:
+    - { role: <role name>, when: ansible_system == 'Linux' }
+    
+2. запускаем плейбук с параметрами
+  ansible-playbook <playbook name> --extra-vars
+  								   --extra-var
+  								   -e	"MYHOSTS=production NEWVAR=something"

@@ -1,0 +1,30 @@
+### how to do test-job, execute command shell ###
+
+localhost:8080(jenkins web iface)
+new-item - freestyle project - build - execute shell
+write command like example: ssh username@192.168.56.3 'hostname'
+Build now
+
+### simple pipeline from git###
+
+1. install jenkins
+2. create ssh-key for jenkins(user)
+3. connect for fingerprint to server
+4. push pipeline in github
+5. pipe example: https://github.com/seemannsgarn/templates/blob/main/first_pipe.jenkins
+	comment: 	agent label in pipe code this is label 
+				name in manage jenkins - nodes - build-in node
+6. create job in jenkins, with link in github
+
+### docker build ###
+
+1. jenkins(this is the user which created jenkins) need permissions for using docker
+	usermod -a -G docker jenkins
+2. pipe: https://github.com/seemannsgarn/templates/blob/main/jenkins/docker_build.jenkins
+
+### docker build to commit ###
+1. just add to code :   triggers {pollSCM('* * * * *')}
+	check commits every minute
+	
+
+
