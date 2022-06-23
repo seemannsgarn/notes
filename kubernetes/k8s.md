@@ -1,4 +1,4 @@
-## check versions
+##### check versions
 ```
 minikube --version
 kubectl version --client
@@ -13,13 +13,13 @@ minikube status
 minikube stop
 minikube ssh
 ```
-> shell users
+**shell users**
 ```
 root
 docker/tsuser
 ```
 
-> clear local state
+**clear local state**
 ```
 minikube delete
 ```
