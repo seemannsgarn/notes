@@ -47,12 +47,17 @@ kubectl get nodes
 *удалить под*
 `kubectl delete pods hello`
 
-kubectl describe pods hello
+получить полную информацию о поде
+> kubectl describe pods hello
 
-kubectl exec hello date
+запустить команду на поде
+> kubectl exec hello date
 
-kubectl exec -it hell sh
+запустить шелл пода
+> kubectl exec -it hell sh
 
-kubectl logs hello
+получить лог
+> kubectl logs hello
 
-kubectl port-forward hello 1234:80
+перенаправить порт пода на порт сервера
+> kubectl port-forward hello 1234:80
