@@ -1,10 +1,13 @@
 check versions
 ```
-minikube version            [//]: # (comment)
+minikube version
 kubectl version --client
 ```
 
 ## minicube
+
+*config path: ~/.minikube/*
+
 > ограничения миникуба: 1 кластер, только с 1 нодом, он же мастер на котором запускаются контейнеры
 ```
 minikube start --vm-driver=virtualbox
@@ -17,7 +20,7 @@ minikube ssh
 shell users
 ```
 root
-docker/tsuser
+docker/tcuser
 ```
 clear local state
 ```
@@ -25,6 +28,9 @@ minikube delete
 ```
 
 ## kubectl
+
+*config path: ~/.kube/*
+
 get information about a cluster
 ```
 kubectl get componentstatuses
