@@ -38,26 +38,36 @@ kubectl cluster-info
 kubectl get nodes
 ```
 
-## pods
-> kubectl get pods
-
+# pods
+получить информацию о нодах
+```
+kubectl get pods
+```
 создать под из образа и открыть порт 80
-> kubectl run hello --image=mustafaevsl/k8s-php-test:latest --port=80
-
+```
+kubectl run hello --image=mustafaevsl/k8s-php-test:latest --port=80
+```
 удалить под
-> kubectl delete pods hello
-
+```
+kubectl delete pods hello
+```
 получить полную информацию о поде
-> kubectl describe pods hello
-
+```
+kubectl describe pods hello
+```
 запустить команду на поде
-> kubectl exec hello date
-
+```
+kubectl exec hello date
+```
 запустить шелл пода
-> kubectl exec -it hell sh
-
+```
+kubectl exec -it hell sh
+```
 получить лог
-> kubectl logs hello
-
+```
+kubectl logs hello
+```
 перенаправить порт пода на порт сервера
-> kubectl port-forward hello 1234:80
+```
+kubectl port-forward hello 1234:80
+```
