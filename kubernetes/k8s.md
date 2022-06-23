@@ -1,6 +1,6 @@
 check versions
 ```
-minikube version
+minikube version [//]: # (comment)
 kubectl version --client
 ```
 
