@@ -39,13 +39,13 @@ kubectl get nodes
 ```
 
 ## pods
-`kubectl get pods`
+> kubectl get pods
 
-*создать под из образа и открыть порт 80*
-`kubectl run hello --image=mustafaevsl/k8s-php-test:latest --port=80`
+создать под из образа и открыть порт 80
+> kubectl run hello --image=mustafaevsl/k8s-php-test:latest --port=80
 
-*удалить под*
-`kubectl delete pods hello`
+удалить под
+> kubectl delete pods hello
 
 получить полную информацию о поде
 > kubectl describe pods hello
