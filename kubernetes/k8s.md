@@ -37,3 +37,22 @@ kubectl get componentstatuses
 kubectl cluster-info
 kubectl get nodes
 ```
+
+## pods
+`kubectl get pods`
+
+*создать под из образа и открыть порт 80*
+`kubectl run hello --image=mustafaevsl/k8s-php-test:latest --port=80`
+
+*удалить под*
+`kubectl delete pods hello`
+
+kubectl describe pods hello
+
+kubectl exec hello date
+
+kubectl exec -it hell sh
+
+kubectl logs hello
+
+kubectl port-forward hello 1234:80
