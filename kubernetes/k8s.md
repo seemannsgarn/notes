@@ -13,19 +13,19 @@ minikube status
 minikube stop
 minikube ssh
 ```
-##### shell users
+> shell users
 ```
 root
 docker/tsuser
 ```
 
-##### clear local state
+> clear local state
 ```
 minikube delete
 ```
 
 ## kubectl
-##### get information about a cluster
+**get information about a cluster**
 ```
 kubectl get componentstatuses
 kubectl cluster-info
