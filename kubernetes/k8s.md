@@ -37,6 +37,10 @@ get information about a cluster
 kubectl get componentstatuses
 kubectl cluster-info
 kubectl get nodes
+kubectl get svc
+kubectl get ing
+kubectl get pods
+kubectl get event --watch
 ```
 
 # pods
@@ -134,4 +138,39 @@ minikube addons enable ingress
 kubectl get ing --all-namespaces
 ```
 
-# 
+# liveness probe 
+отвечает за то чтобы контейнер был жив
+для каждого контейнера в спецификации модуля можно указать проверку живучести, которая будет перезапускать контейнер в случае срабатывания проверки
+существует 3 механизма проверки:
+- httpGet
+- tcp
+- exec
+
+
+# readiness probe
+для того чтобы понимать когда регистрировать под к сервису, чтобы направлять на него трафик
+другими словами, если эта проба срабатывает, трафик отправлять туда нельзя.
+методы такие же как и у liveness:
+- httpGet
+- tcp
+- exec
+
+# startup probe
+ выполняет условие, после которого контейнер считается живым, и отдает управление liveness and readiness
+
+ # helm
+ - helm.sh
+ ```
+ helm install myApp myApp-helmChart/
+ helm install myApp1 myApp-helmChart/ -f prod_values.yaml
+ helm install myApp2 myApp-helmChart/ --set container.image=DarthVader/DeathStar:v1
+ helm install myApp3 myApp-helmChart/ -f another_values.yaml --set container.image=DarthVader/DeathStar:v1
+ helm create myChart
+ helm list
+ helm package chartDir/ # запаковать в архив
+ helm repo add bitnami https://charts.bitnami.com/bitnami
+ helm search repo
+ helm search hub apache     # смотрим в хабе есть ли артифакт апача
+ helm install my-release bitnami/apache
+ helm delete app
+ ```
